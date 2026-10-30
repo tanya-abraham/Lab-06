@@ -187,7 +187,9 @@ candy_rankings %>%
 Do more expensive candies win more often? Make a scatterplot of pricepercent (x) against winpercent (y). Describe their relationship.  
 
 ```{r}
-# your code here
+ggplot(candy_rankings, aes(x = pricepercent, y = winpercent, color = chocolate)) +
+  geom_point() 
+
 
 ```
 
@@ -201,8 +203,8 @@ Do more expensive candies win more often? Make a scatterplot of pricepercent (x)
 Are chocolate candies more likely to be candy bars? Make a filled bar plot with chocolate on the x-axis and fill = bar. Describe what you see.
 
 ```{r}
-# Your code here
-
+ggplot(candy_rankings, aes(x = chocolate, fill = bar)) +
+  geom_bar()
 ```
 
 
@@ -210,7 +212,9 @@ Are chocolate candies more likely to be candy bars? Make a filled bar plot with 
 Create a new variable called price per sugar ratio as the division of pricepercent and sugarpercent. Plot it against winpercent, and set the color of all points to blue for the competitors who are not "One dime" or "One quarter". Include x and y labels and a title. Describe any relationship you see.
 
 ```{r}
-# your code here
+candy_df %>%
+  mutate(
+    price_sugar_ratio = pricepercent/sugarpercent)
 
 ```
 

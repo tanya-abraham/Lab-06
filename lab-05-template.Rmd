@@ -23,7 +23,7 @@ knitr::include_graphics("img/Speaking-the-world.jpg")
 
 _Write your comments about image 1 below_
 
-
+This graphics in the image are not up to scale and so fail to communicate the differences in the number of speakers for each language. Moreover, the number of Chinese speakers has been incorrectly written as 1,026 billion speakers. 
 
 
 ## Image 2
@@ -34,6 +34,7 @@ knitr::include_graphics("img/rose-pop-density-total-area-bw.jpg")
 
 _Write your comments about image 2 below_
 
+There are no figures/numbers provided corresponding to the data on their population density and total area. Moreover, this pie chart has combined two measures, population density and total area. The colours chosen are also poor, as they are all shades of grey. 
 
 
 
@@ -45,7 +46,7 @@ knitr::include_graphics("img/life-expectancy-rule-of-law.png")
 
 _Write your comments about image 3 below_
 
-
+The data is too close together and so you cannot differentiate between them. There also isn't a meaninful title and other labels. 
 
 
 ## Image 4
@@ -56,7 +57,7 @@ knitr::include_graphics("img/global-income-dist.PNG")
 
 _Write your comments about image 4 below_
 
-
+The poverty line should be clearer. The scale of the income distribution also isn't meaningful. 
 
 # Data Visualization for Halloween 
 
@@ -83,6 +84,8 @@ glimpse(candy_df)
 How many observations and variables are in this dataset?
 Did you identify the type of variables, remember that this detail is crucial to create which kind of data visualization in general. 
 
+
+
 _Write your comments about results_
 
 # Data viz - One variable at a time
@@ -99,8 +102,21 @@ candy_df <- candy_df %>%
 Complete the following code to get the data viz to represent "how many candies contain caramel via bar plot". Fill in the blanks, remove the # symbol in front of your code and the execute the code chunk via green play button.
 
 ```{r}
-# ggplot(candy_rankings, aes(x = ______)) +
-#  _____() +
+ggplot(candy_rankings, aes(x = caramel)) +
+  geom_bar() +
+  labs(
+    title = "Number of Candies that Contain Caramel",
+    x = "Count",
+    y = "Caramel"
+  )
+
+ggplot(candy_rankings, aes(x = chocolate)) +
+  geom_bar() +
+  labs(
+    title = "Number of Candies that Contain Chocolate",
+    x = "Count",
+    y = "Chocolate"
+  )
 ```
 
 ## Exercise 3
@@ -108,7 +124,13 @@ Complete the following code to get the data viz to represent "how many candies c
 Now look at a numerical variable, such as `winpercent`. Create an histogram for this variable using ggplot2 functions below. Include informative x and y labels and a title, as a good practice.
 
 ```{r}
-# Your code here
+ggplot(candy_rankings, aes(x = winpercent)) +
+  geom_histogram(binwidth = 20) +
+  labs(
+    title = "Histogram of Winpercent",
+    x = "Winpercent",
+    y = "Count"
+  )
 
 ```
 
@@ -122,10 +144,9 @@ How about using the both variables; chocolate vs winpercent? Run the following i
 Fill in the blanks, remove the # symbol in front of your code and the execute the code chunk via green play button.
 
 ```{r}
-# Your code here
-#ggplot(candy_df, aes(x = ___________)) +
-#  geom_histogram() +
-#  facet_wrap(___________)
+ggplot(candy_df, aes(x = winpercent, fill = caramel)) +
+geom_histogram() +
+facet_wrap( ~ chocolate)
 
 ```
 
@@ -137,8 +158,14 @@ Fill in the blanks, remove the # symbol in front of your code and the execute th
 Create a visualization that examines the relationship between a candy’s win percentage and whether it contains chocolate. Include x and y labels and a title. Describe any relationship you see.
 
 ```{r}
-# your code here
-
+ggplot(candy_rankings, aes(x = chocolate, y = winpercent)) +
+  geom_boxplot() +
+  labs(
+    title = "Relationship b/w win percentage and chocolate",
+    x = "Chocolate",
+    y = "Winpercent"
+  )
+  theme_minimal()
 ```
 
 - Consider the similar pair by replacing chocolate with caramel, fruity and compare their results. 
